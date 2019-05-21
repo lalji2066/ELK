@@ -23,10 +23,10 @@ function __construct() {
 			];
 		}
 		public function get_client_con(){
-		$this->clientBuilder = ClientBuilder::create();   // Instantiate a new ClientBuilder
-		$this->clientBuilder->setHosts($this->hosts);           // Set the hosts
-		$this->client = $this->clientBuilder->build();  
-		return $this->client;
-	}
+			$this->clientBuilder = ClientBuilder::create();   // Instantiate a new ClientBuilder
+			$this->clientBuilder->setHosts($this->hosts);           // Set the hosts
+			$this->client = $this->clientBuilder->build();  
+			return $this->client;
+		}
 }
 ?>

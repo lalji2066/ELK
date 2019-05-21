@@ -1,0 +1,69 @@
+# This file is where you define your pipelines. You can define multiple.
+# For more information on multiple pipelines, see the documentation:
+#   https://www.elastic.co/guide/en/logstash/current/multiple-pipelines.html
+
+#- pipeline.id: main
+#  path.config: "/etc/logstash/conf.d/*.conf"
+
+- pipeline.id: mumbai
+  path.config: "/etc/logstash/conf.d/mumbai/*.conf"
+
+- pipeline.id: delhi
+  path.config: "/etc/logstash/conf.d/delhi/*.conf"
+
+- pipeline.id: kolkata
+  path.config: "/etc/logstash/conf.d/kolkata/*.conf"
+
+- pipeline.id: bangalore
+  path.config: "/etc/logstash/conf.d/bangalore/*.conf"
+
+- pipeline.id: chennai
+  path.config: "/etc/logstash/conf.d/chennai/*.conf"
+
+- pipeline.id: pune
+  path.config: "/etc/logstash/conf.d/pune/*.conf"
+
+- pipeline.id: hyderabad
+  path.config: "/etc/logstash/conf.d/hyderabad/*.conf"
+
+- pipeline.id: ahmedabad
+  path.config: "/etc/logstash/conf.d/ahmedabad/*.conf"
+
+- pipeline.id: remote
+  path.config: "/etc/logstash/conf.d/remote/*.conf"
+
+#######################################SALES#################################
+#- pipeline.id: mumbai
+#  path.config: "/etc/logstash/conf.d/sales/mumbai/*.conf"
+
+#- pipeline.id: delhi
+#  path.config: "/etc/logstash/conf.d/sales/delhi/*.conf"
+
+#- pipeline.id: kolkata
+#  path.config: "/etc/logstash/conf.d/sales/kolkata/*.conf"
+
+#- pipeline.id: bangalore
+#  path.config: "/etc/logstash/conf.d/sales/bangalore/*.conf"
+
+#- pipeline.id: chennai
+#  path.config: "/etc/logstash/conf.d/sales/chennai/*.conf"
+
+#- pipeline.id: pune
+#  path.config: "/etc/logstash/conf.d/sales/pune/*.conf"
+
+#- pipeline.id: hyderabad
+#  path.config: "/etc/logstash/conf.d/sales/hyderabad/*.conf"
+
+#- pipeline.id: ahmedabad
+#  path.config: "/etc/logstash/conf.d/sales/ahmedabad/*.conf"
+
+#- pipeline.id: remote
+#  path.config: "/etc/logstash/conf.d/sales/remote/*.conf"
+
+#- pipeline.id: emplineage
+#  path.config: "/etc/logstash/conf.d/sales/emplineage/*.conf"
+
+#- pipeline.id: managers_empcode
+#  path.config: "/etc/logstash/conf.d/sales/managers_empcode/*.conf"
+
+

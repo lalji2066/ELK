@@ -1,19 +1,28 @@
 <?php
 
+error_reporting(E_ALL);
+
 include('es_con.php');
 include('utils.php');
 
 $esObj = new EsConn();
 $esClient = $esObj->get_client_con();
 
-$source_array= array("mumbai","delhi","kolkata","bangalore","chennai","pune","hyderabad","ahmedabad");
-foreach($source_array as $source){
+#$source_array= array("mumbai","delhi","kolkata","bangalore","chennai","pune","hyderabad","ahmedabad");
+#foreach($source_array as $source){
+if(isset($_GET['city']))
+$source = $_GET['city'];
+else
+$source = $argv[1];
+#echo $source;exit;
+if(!empty($source)){
+#$source = $_GET['city'];
 
 $source_params = [
     "scroll" => "30s",          // how long between scroll requests. should be small!
     "size" => 1000,               // how many results *per shard* you want back
     "index" => "tbl_contract_validation_$source",
-    "type"=>"tbl_dest",
+    "type"=>"tbl_source",
     "client" => [ "ignore" => [400, 404] ],
     "body" => [
         "query" => [
@@ -24,7 +33,7 @@ $source_params = [
 
 $dest_params_comp = [
 	"index"=>"temp_company_match_data_consolidate_$source",
-	"type"=>"tbl_sourec",
+	"type"=>"tbl_dest",
 	"client" => [ "ignore" => [400, 404] ],
 	"body" => [
         "query" => [
@@ -53,7 +62,7 @@ $dest_params_add = [
 // The response will contain the first batch of documents
 // and a scroll_id
 $source_response = $esClient->search($source_params);
-echo "source search sucessfull \n";
+#echo "source search sucessfull \n";
 #print_r($source_response);exit;
 #print_r($source_response['hits']['hits'][0]['_source']['companyname']);
 #echo count($source_response);exit;
@@ -135,7 +144,7 @@ echo 	$new_address = trim($data['_source']['new_address']);
 
     // When done, get the new scroll_id
     // You must always refresh your _scroll_id!  It can change sometimes
-echo "\n scroll_id:".    $scroll_id = $source_response['_scroll_id'];
+    $scroll_id = $source_response['_scroll_id'];
 
     // Execute a Scroll request and repeat
     $source_response = $esClient->scroll([
@@ -147,8 +156,11 @@ echo "\n scroll_id:".    $scroll_id = $source_response['_scroll_id'];
 #############################Serach END###############################
 #$result_json = json_encode($result_array);
 #file_put_contents('/home/laljiy/es_serach_data.json', $result_json);
-echo $source ."\n";
-file_put_contents("/tmp/es_search/test_es_search_data_$source.txt", $output_data);
+#echo $source ."\n";
+error_reporting(E_ALL);
+if(empty(file_put_contents('/tmp/es_search/curl_es_search_data_'.$source.'.txt', $output_data))){
+	echo $output_data;
+}
 #exit;
 }
 ?>
